@@ -21,7 +21,7 @@ public class Controle {
         return "Seja bem vindo " + nome;
     }
 
-    @PostMapping("/pessoa")
+    @PostMapping("/cadastroalu")
     public CadastroAlu pessoa(@RequestBody CadastroAlu p){
         return p;
     }

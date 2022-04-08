@@ -7,8 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name="cadastro_pro")
 public class CadastroPro {
@@ -22,36 +29,8 @@ public class CadastroPro {
     private int cpf;
     private String email_pro;
 
-    public int getId_pro() {
-        return id_pro;
-    }
-    public String getEmail_pro() {
-        return email_pro;
-    }
-    public void setEmail_pro(String email_pro) {
-        this.email_pro = email_pro;
-    }
-    public int getCpf() {
-        return cpf;
-    }
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
-    }
-    public Date getNasc_pro() {
-        return nasc_pro;
-    }
-    public void setNasc_pro(Date nasc_pro) {
-        this.nasc_pro = nasc_pro;
-    }
-    public String getNome_pro() {
-        return nome_pro;
-    }
-    public void setNome_pro(String nome_pro) {
-        this.nome_pro = nome_pro;
-    }
-    public void setId_pro(int id_pro) {
-        this.id_pro = id_pro;
-    }
-
+    @OneToOne
+    @JoinColumn(name="usuarioId")
+    private Usuarios usuario;
 
 }
