@@ -12,5 +12,5 @@ public class PostProDto {
     private Date nasc;
     private String cpf;
     private String email;
-    private long usuario_id;
+    private Integer usuario_id;
 }

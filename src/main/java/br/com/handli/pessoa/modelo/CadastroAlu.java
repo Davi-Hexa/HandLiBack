@@ -35,5 +35,5 @@ public class CadastroAlu {
 
     @OneToOne
     @JoinColumn(name="usuarioId")
-    private Usuarios usuario;
+    private Usuarios usuario_id;
 }

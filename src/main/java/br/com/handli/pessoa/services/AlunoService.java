@@ -31,7 +31,7 @@ public class AlunoService {
         aluno.setCpf(dto.getCpf());
         aluno.setNasc(dto.getNasc());
         aluno.setEmail(dto.getEmail());
-        aluno.setUsuario(usuarios);
+        aluno.setUsuario_id(usuarios);
 
         this.alunoRepositor.save(aluno);
 
@@ -41,8 +41,7 @@ public class AlunoService {
         response.setCpf(aluno.getCpf());
         response.setNasc(aluno.getNasc());
         response.setEmail(aluno.getEmail());
-        response.setUsuario_id(aluno.getUsuario().getId_usu());
-
+        response.setUsuario_id(aluno.getUsuario_id().getId_usu());
         return response;
     }
 }

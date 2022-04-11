@@ -33,6 +33,7 @@ public class ProfessorService {
         professor.setCpf(dto.getCpf());
         professor.setEmail(dto.getEmail());
         professor.setUsuario_id(usuarios);
+        
         this.professorRepositor.save(professor);
 
         ResponserProDto response = new ResponserProDto();

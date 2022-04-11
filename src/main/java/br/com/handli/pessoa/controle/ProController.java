@@ -13,13 +13,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class ProController {
-    private final ProfessorService service;
+    private final ProfessorService proService;
 
     @PostMapping("/v1/professores")
     public ResponseEntity<?> createUser(@RequestBody PostProDto dto){
-
-        ResponserProDto response = this.service.createPro(dto);
-        return ResponseEntity.ok().body(response);
+        ResponserProDto response = this.proService.createPro(dto);
+        return ResponseEntity.ok(response);
     }
 
 }
