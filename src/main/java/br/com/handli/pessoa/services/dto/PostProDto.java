@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ResponseAluDto {
-    private int id;
+public class PostProDto {
     private String nome;
-    private String cpf;
     private Date nasc;
+    private String cpf;
     private String email;
-    private Integer usuario_id; 
+    private long usuario_id;
 }

@@ -23,15 +23,15 @@ public class CadastroAlu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
-    private int id_alu;
-    private String nome_alu;
+    private int id;
+    private String nome;
 
     @Column(unique = true)
-    private int cpf_alu;
+    private String cpf;
 
-    private Date nasc_alu;
+    private Date nasc;
 
-    private String email_alu;
+    private String email;
 
     @OneToOne
     @JoinColumn(name="usuarioId")

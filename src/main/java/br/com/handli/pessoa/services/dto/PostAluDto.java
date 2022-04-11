@@ -1,17 +1,17 @@
 package br.com.handli.pessoa.services.dto;
 
+
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-public class ResponseAluDto {
-    private int id;
+@AllArgsConstructor
+public class PostAluDto {
     private String nome;
     private String cpf;
     private Date nasc;
     private String email;
-    private Integer usuario_id; 
+    private Integer usuarios_id; 
 }

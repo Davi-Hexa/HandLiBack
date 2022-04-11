@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ResponseProDto {
-    private Integer id_pro;
-    private String nome_pro;
-    private Date nasc_pro;
-    private Integer cpf;
-    private String email_pro;
+public class ResponserProDto {
+    private Integer id;
+    private String nome;
+    private Date nasc;
+    private String cpf;
+    private String email;
     private Integer usuario_id;
 }

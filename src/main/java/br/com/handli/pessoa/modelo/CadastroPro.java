@@ -23,14 +23,14 @@ public class CadastroPro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
-    private int id_pro;
-    private String nome_pro;
-    private Date nasc_pro;
-    private int cpf;
-    private String email_pro;
+    private int id;
+    private String nome;
+    private Date nasc;
+    private String cpf;
+    private String email;
 
     @OneToOne
     @JoinColumn(name="usuarioId")
-    private Usuarios usuario;
+    private Usuarios usuario_id;
 
 }
