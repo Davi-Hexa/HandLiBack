@@ -1,13 +1,13 @@
 package br.com.handli.pessoa.services.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import br.com.handli.pessoa.config.Enumerate;
+import br.com.handli.pessoa.config.EnumerateCadastro;
 import lombok.Data;
 
 @Data
@@ -16,11 +16,11 @@ public class PostUserDto {
     private String nome;
     @CPF(message = "CPF invalido!")
     private String cpf;
-    private Date nasc;
+    private LocalDate nasc;
     @Email
     private String email;
     private String password;
-    private Enumerate tipo;
+    private EnumerateCadastro tipo;
 }
 // 12/03
 // O que eu fiz ontem nestá pagina:

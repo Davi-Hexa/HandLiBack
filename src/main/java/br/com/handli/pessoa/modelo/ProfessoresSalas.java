@@ -1,48 +1,40 @@
 package br.com.handli.pessoa.modelo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
-import br.com.handli.pessoa.config.EnumerateCadastro;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
-public class Usuarios {
-    
+@Table(name="professores_salas")
+public class ProfessoresSalas {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true, name = "id")
-    private int id_usuarios;
+    @Column(nullable = false, name = "id")
+    private int id_professoresSalas;
 
-    private String nome;
+    @JoinColumn(name = "usuario_professores")
+    @ManyToOne
+    private Usuarios usuarioPro;
 
-
-    private String cpf;
-
-    private LocalDate nasc;
-
-    private String email;
+    @ManyToOne
+    private Sala sala;
 
 
-    @Enumerated(EnumType.STRING)
-    private EnumerateCadastro tipo;
-
-    @Column(nullable = true)
-    private String password;
-    
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
