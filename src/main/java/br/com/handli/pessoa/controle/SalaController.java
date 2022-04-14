@@ -6,12 +6,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.handli.pessoa.services.SalasService;
 import br.com.handli.pessoa.services.dto.PostAlunoSalaDto;
 import br.com.handli.pessoa.services.dto.PostProfessorSalasDto;
 import br.com.handli.pessoa.services.dto.PostSalasDto;
+import br.com.handli.pessoa.services.dto.ResponseProfAluSalaDto;
 import br.com.handli.pessoa.services.dto.ResponseSalaDto;
 import lombok.RequiredArgsConstructor;
 
@@ -36,5 +39,10 @@ public class SalaController {
     public ResponseEntity<?> createProInRoom(@PathVariable(name = "id") Integer id, @RequestBody PostProfessorSalasDto dto){
         salasService.associatePro(id, dto);
         return ResponseEntity.ok().build();
+    }
+    @RequestMapping("/v1/alunos")
+    public ResponseEntity<?> getUser(@RequestParam(name = "professorId") Integer professorId, @RequestParam(name = "salaId") Integer salaId){
+        ResponseProfAluSalaDto response = this.salasService.getAluno(professorId, salaId);
+        return ResponseEntity.ok().body(response);
     }
 }

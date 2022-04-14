@@ -16,11 +16,7 @@ public class UsuarioService {
     private final UsuarioRepositor usuarioRepositor;
 	private final PasswordEncoder passwordEncoder;
 
-    public ResponseUserDto getAluno(String aluno){
-        Usuarios n1 = this.usuarioRepositor.findAluno(aluno); 
-        ResponseUserDto response = new ResponseUserDto(n1);
-        return response;
-    }
+
 
     public ResponseUserDto createUser(PostUserDto dto) {
         Usuarios usuarios = new Usuarios();
@@ -48,7 +44,7 @@ public class UsuarioService {
             ResponseUserDto responserUserDto = new ResponseUserDto(usuarios); //verificação da senha se elas batem se sim o login é realizado com sucesso.
             return responserUserDto;
         }
-        throw new RuntimeException("Usuario ou senha invalida!");
+        throw new RuntimeException("Usuario ou senha invalido!");
     }
 }
 

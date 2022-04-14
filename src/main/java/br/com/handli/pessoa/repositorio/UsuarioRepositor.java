@@ -13,7 +13,7 @@ public interface UsuarioRepositor extends JpaRepository<Usuarios, Integer> {
     @Query("select u from Usuarios u where u.email = :email") //
     Usuarios findByEmail(String email);
 
-    @Query("select nome, nasc as nascimento, email from Usuarios u where u.tipo = 'ALUNO' ORDER BY u.nome")
+    @Query("select u from Usuarios u where u.tipo = 'ALUNO' and u.nome = :aluno")
     Usuarios findAluno(String aluno);
 
 }
