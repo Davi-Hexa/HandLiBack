@@ -14,12 +14,20 @@ import lombok.Data;
 public class PostUserDto {
     @NotBlank(message="Nome Obrigatorio!")
     private String nome;
+
     @CPF(message = "CPF invalido!")
     private String cpf;
+
+    
     private LocalDate nasc;
+
     @Email
+    @NotBlank(message = "Email obrigatório!")
     private String email;
+
+    @NotBlank(message = "Insira uma senha!")
     private String password;
+
     private EnumerateCadastro tipo;
 }
 // 12/03
