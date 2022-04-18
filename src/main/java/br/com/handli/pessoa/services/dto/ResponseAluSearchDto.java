@@ -8,22 +8,15 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ResponseUserDto {
-    private Integer id_usuarios;
+public class ResponseAluSearchDto {
     private String nome;
     private LocalDate nasc;
     private String email;
-    private String cpf;
-    private String password;
 
-    public ResponseUserDto(Usuarios usuarios){
-        this.setId_usuarios(usuarios.getId_usuarios());
-        this.setCpf(usuarios.getCpf());
-        this.setPassword(usuarios.getPassword());
+
+    public ResponseAluSearchDto(Usuarios usuarios){
         this.setNasc(usuarios.getNasc());
         this.setNome(usuarios.getNome());
         this.setEmail(usuarios.getEmail().toLowerCase().strip());
-    
     }
 }
-

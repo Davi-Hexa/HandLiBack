@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.handli.pessoa.config.MailConfig;
+import br.com.handli.pessoa.errormessage.ErrorMessageEditable;
+import br.com.handli.pessoa.errormessage.TesteError;
 import br.com.handli.pessoa.modelo.AlunoSala;
 import br.com.handli.pessoa.modelo.ProfessoresSalas;
 import br.com.handli.pessoa.modelo.Sala;
@@ -16,6 +19,7 @@ import br.com.handli.pessoa.repositorio.UsuarioRepositor;
 import br.com.handli.pessoa.services.dto.PostAlunoSalaDto;
 import br.com.handli.pessoa.services.dto.PostProfessorSalasDto;
 import br.com.handli.pessoa.services.dto.PostSalasDto;
+import br.com.handli.pessoa.services.dto.ResponseAluSearchDto;
 import br.com.handli.pessoa.services.dto.ResponseProfAluSalaDto;
 import br.com.handli.pessoa.services.dto.ResponseSalaAluDto;
 import br.com.handli.pessoa.services.dto.ResponseSalaDto;
@@ -37,19 +41,23 @@ public class SalasService {
         ResponseUserDto responseUserDto = new ResponseUserDto(professor);
         ResponseProfAluSalaDto response= new ResponseProfAluSalaDto();
         ResponseSalaAluDto responseSalaAluDto = new ResponseSalaAluDto();
+        TesteError testeError = new TesteError(professorSalaRepositor, usuarioRepositor);
         
         responseSalaAluDto.setSala(professorSala.getSala().getNome());
 
         List<AlunoSala> alunos = this.alunoSalaRepositor.findByALuRoomId(idSala);
-        List<ResponseUserDto> alunosResponse = alunos.stream().map((alunoSala) -> {
-            ResponseUserDto aluno= new ResponseUserDto(alunoSala.getUsuarioAluno());
+        List<ResponseAluSearchDto> alunosResponse = alunos.stream().map((alunoSala) -> {
+            ResponseAluSearchDto aluno= new ResponseAluSearchDto(alunoSala.getUsuarioAluno());
             return aluno;
         }).collect(Collectors.toList());
         responseSalaAluDto.setAlunos(alunosResponse);
-
         response.setProfessor(responseUserDto);
         response.setSala(responseSalaAluDto);
-        
+
+        if(testeError.TesteProfessor(professor.getId_usuarios(), professorSala.getId_professoresSalas()) == false){
+            throw new ErrorMessageEditable("Erro! Professor não está nesta sala!");
+        }
+
         return response;
 
     }
@@ -90,4 +98,11 @@ public class SalasService {
         }
     }
 
+    public MailConfig forgotPassword(Usuarios usuarios){
+        Usuarios response = this.usuarioRepositor.forgotPassword(usuarios.getEmail().toString());
+        MailConfig mailConfig = new MailConfig();
+
+        mailConfig.enviarEmail(response);
+        return mailConfig;
+    }
 }

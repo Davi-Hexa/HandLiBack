@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseSalaAluDto {
     private String sala;
-    private List<ResponseUserDto> alunos;
+    private List<ResponseAluSearchDto> alunos;
 }
