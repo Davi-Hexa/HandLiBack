@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.handli.pessoa.modelo.Usuarios;
-import br.com.handli.pessoa.services.SalasService;
 import br.com.handli.pessoa.services.UsuarioService;
 import br.com.handli.pessoa.services.dto.PostUserDto;
 import br.com.handli.pessoa.services.dto.ResponseUserDto;
@@ -20,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserController {
     private final UsuarioService usuarioService;
-    private final SalasService salasService;
 
     @PostMapping("/v1/usuarios")
     public ResponseEntity<?> createUser(@RequestBody @Valid PostUserDto dto){

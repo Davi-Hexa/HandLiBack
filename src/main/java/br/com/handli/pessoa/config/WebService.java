@@ -10,10 +10,14 @@ public class WebService extends WebSecurityConfigurerAdapter{
     @Override
     public void configure(HttpSecurity http) throws Exception {
             http
+            // .authorizeRequests()
+            // .anyRequest()
+            // .authenticated()
+            // .and ()
+            // .httpBasic();
+            
                 .csrf().disable()
-                // .sessionManagement(SessionCreationPolicy.STATELESS)
                 .authorizeRequests()
-                    .antMatchers("/**").permitAll();
+                   .antMatchers("/**").permitAll();
         }
 }
-

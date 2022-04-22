@@ -1,8 +1,11 @@
 package br.com.handli.pessoa.services;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.handli.pessoa.errormessage.ErrorMessageEditable;
 import br.com.handli.pessoa.modelo.Usuarios;
 import br.com.handli.pessoa.repositorio.UsuarioRepositor;
 import br.com.handli.pessoa.services.dto.PostLoginDto;
@@ -18,11 +21,18 @@ public class UsuarioService {
 
 
 
-    public ResponseUserDto createUser(PostUserDto dto) {
+    public ResponseUserDto createUser(PostUserDto dto) throws ErrorMessageEditable{
         Usuarios usuarios = new Usuarios();
+        List<Usuarios> email = this.usuarioRepositor.findByListEmail(usuarios.getEmail());
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
 
+
+        if(usuarios.getEmail().equals(email.toString())){
+            throw new ErrorMessageEditable
+            ("O email " + dto.getEmail() + " já está registrado!");
+        }
+        
         usuarios.setPassword(encodedPassword);
         usuarios.setTipo(dto.getTipo());
         usuarios.setCpf(dto.getCpf());
